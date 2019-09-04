@@ -19,8 +19,10 @@ public class BankUsers
            users[i] = new BankUsers(name, acc, bal);
        }
        System.out.println("Name\tAcc\t\tBal");
+       System.out.println("---------------------------------------");
        for(int i = 0; i < 5; i++){
         System.out.println(users[i].name + "\t" + users[i].acc + "\t" + users[i].bal);     
+	System.out.println("---------------------------------------");
        } 
     }
 
