@@ -1,0 +1,20 @@
+class demoRecursion
+{
+	int factorial(num)
+	{
+	int fact = 1;
+		while (num > 0)
+		{
+			fact = fact * num;
+			num = num - 1;
+		}
+	return fact;
+	}
+	
+	public static void main(String[] args)
+	{
+		demoRecursion obj = new demoRecursion();
+		System.out.println("Factorial of 5 is ");
+		System.out.println(obj.factorial(5));
+	}
+}
