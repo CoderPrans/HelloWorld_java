@@ -19,20 +19,22 @@ public class patients
            String gen = sc.next();
            users[i] = new patients(name, age, gen);
        }
-       System.out.println("Name\tAcc\t\tBal");
-       System.out.println("---------------------------------------");
+       System.out.println("Name\t| Age\t| Gender");
+       System.out.println("\n");
        for(int i = 0; i < 5; i++){
-        System.out.println(users[i].name + "\t" + users[i].age + "\t" + users[i].gen);     
+        System.out.println(users[i].name + "\t| " + users[i].age + "\t| " + users[i].gen);     
 	    System.out.println("---------------------------------------");
        } 
-         PrintWriter out = new PrintWriter(new FileWriter("OutFile.csv"));
+         PrintWriter out = new PrintWriter(new FileWriter("Patients_data.csv"));
          out.println("Name,Age,Gender");
          for (int i = 0; i < 5; i++) {
              // The get(int) method throws IndexOutOfBoundsException, which must be caught.
              out.println(users[i].name + "," + users[i].age+ "," + users[i].gen);
          }
          out.close();
+        System.out.println("Saved in Patients_data.csv file.");
     }
+
     // initialize variables
     String name;
     int age;
