@@ -1,0 +1,556 @@
+﻿Addition.java
+
+code:
+--
+import java.util.Scanner;
+
+public class Addition {
+    public static void main(String[] args)  {                                   
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the first number: ");
+        int a = sc.nextInt();
+        System.out.println("Enter the second number: ");
+        int b = sc.nextInt();
+            
+        int sum = a + b;
+        System.out.println("The sum is " + a + " + " + b + " = " + sum);
+    }   
+}
+
+output:
+--
+Enter the first number:
+Enter the second number:
+The sum is 23 + 56 = 79
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Person.java
+
+code:
+--
+
+public class Person
+{
+	String name;
+	int age;
+	String likes;
+
+	void eat()
+	{
+		System.out.println("I like " + likes);
+	}
+
+	void talk()
+	{
+		System.out.println("my name is " + name);
+		System.out.println("my age is " + age);
+	}
+
+	// Constructor
+	public Person(String name, int age, String likes)
+	{
+		this.name = name;
+		this.age = age;
+		this.likes = likes;
+	}
+
+	public static void main(String[] args)
+	{
+		Person Raju = new Person("Raju", 30, "Mangoes");
+		Raju.talk();
+		Raju.eat();
+		System.out.println("-----------------------");
+		Person Ajay = new Person("Ajay", 22, "Grapes");
+		Ajay.talk();
+		Ajay.eat();
+	}
+}
+
+
+output:
+--
+my name is Raju
+my age is 30
+I like Mangoes
+-----------------------
+my name is Ajay
+my age is 22
+I like Grapes
+
+BankUsers.java
+
+code:
+--
+
+import java.util.Scanner;
+import java.io.*;
+// class declaration
+public class BankUsers
+{
+    public static void main(String[] args) throws IOException
+    {
+       Scanner sc = new Scanner(System.in);
+       
+       // array variable
+       BankUsers[] users = new BankUsers[5];
+       
+       for(int i = 0; i < 5; i++){
+           System.out.println("Enter Name: ");  
+           String name = sc.next();
+           System.out.println("Enter Account Number: ");
+           long acc = sc.nextLong();
+           System.out.println("Enter Balance: ");
+           float bal = sc.nextFloat();
+           users[i] = new BankUsers(name, acc, bal);
+       }
+       System.out.println("Name\tAcc\t\tBal");
+       System.out.println("---------------------------------------");
+       for(int i = 0; i < 5; i++){
+        System.out.println(users[i].name + "\t" + users[i].acc + "\t" + users[i].bal);     
+	    System.out.println("---------------------------------------");
+       } 
+         PrintWriter out = new PrintWriter(new FileWriter("OutFile.csv"));
+
+         for (int i = 0; i < 5; i++) {
+             // The get(int) method throws IndexOutOfBoundsException, which must be caught.
+             out.println(users[i].name + "," + users[i].acc+ "," + users[i].bal);
+         }
+         out.close();
+    }
+    // initialize variables
+    String name;
+    long acc;
+    float bal;
+
+    // constructor declaration of class
+    public BankUsers(String name, long acc, float bal)
+    {
+        this.name = name;
+        this.acc = acc;
+        this.bal = bal; 
+    }
+}
+
+
+
+ouput:
+--
+Enter Name: 
+Enter Account Number: 
+Enter Balance: 
+Enter Name: 
+Enter Account Number: 
+Enter Balance: 
+Enter Name: 
+Enter Account Number: 
+Enter Balance: 
+Enter Name: 
+Enter Account Number: 
+Enter Balance: 
+Enter Name: 
+Enter Account Number: 
+Enter Balance: 
+Name		Acc		Bal
+---------------------------------------
+Pranav	2342524	23.0
+---------------------------------------
+Priya		2323232	99.0
+---------------------------------------
+Farhan	3434909	53.0
+---------------------------------------
+Harry		5920209	98.0
+---------------------------------------
+Endo		3338502	67.0
+---------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GetterSetter.java
+
+code:
+--
+
+class GetSet
+{
+	private String name;
+	private int age;
+
+	public void setname(String name)
+	{
+		this.name = name;
+	}
+	public void setage(int age)
+	{
+		this.age = age;
+	}
+	public int getage()
+	{	
+		return age;
+	}
+	public String getname()
+	{	
+		return name;
+	}
+}
+
+class GetterSetter
+{
+	public static void main(String[] args)
+	{
+		GetSet p1 = new GetSet();
+		p1.setname("Raju");
+		p1.setage(30);
+		System.out.println("name " + p1.getname());
+		System.out.println("age " + p1.getage());
+	}
+}
+
+output:
+--
+name Raju
+age 30
+
+
+
+
+
+
+
+
+
+Inheritance.java
+
+code:
+--
+
+class teacher {
+    int id;
+    String name;
+    String address;
+    float sal;
+
+    void setId(int id) {
+        this.id = id; 
+    }
+    int getId() {
+        return id; 
+    }
+    void setName(String name) {
+        this.name = name; 
+    }
+    String getName() {
+        return name; 
+    }
+    // teacher() {
+    //     System.out.println("I'm the teacher");
+    // }
+    protected void printa(String source) {
+        System.out.println("printa called, coming " + source); 
+    }
+}
+
+class student extends teacher {
+    int id;
+    String name;
+    String address;
+    int marks;
+    void setMarks(int marks) {
+        this.marks = marks; 
+    }
+    int getMarks() {
+        return marks; 
+    }
+    void setAddress(String address) {
+        this.address = address; 
+    }
+    String getAddress() {
+        return address; 
+    }
+    // student() {
+    //     System.out.println("I'm the student");
+    // }
+    void printb() {
+        System.out.println("I'm the child"); 
+    }
+}
+
+
+class Inheritance {
+    public static void main(String[] args) {
+        student obj = new student(); 
+        teacher obj2 = new teacher();
+
+        // -> won't work if printa() has private access [use PROTECTED access]
+        obj.printa("from child");          
+        obj2.printa("from parent"); 
+
+        // obj.setId(102);
+        // obj.setName("Vijay");
+        // obj.setAddress("Alandi, Pune 412105");
+        // obj.setMarks(250);
+
+        // System.out.println("Id is " + obj.getId());
+        // System.out.println("Name is " + obj.getName());
+        // System.out.println("Address is " + obj.getAddress());
+        // System.out.println("Marks is " + obj.getMarks());
+    }
+}
+
+output:
+--
+printa called, coming from child
+printa called, coming from parent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abstract.java
+
+code:
+--
+
+abstract class parent {
+    abstract void cal(double x);
+}
+
+class child1 extends parent {
+    void cal(double x) {
+     // Square
+    System.out.println("Square - "+ x*x);
+    }
+}
+class child2 extends parent{
+    void cal(double x) {
+     // Root
+    System.out.println("Root - "+ Math.sqrt(x));
+    }
+}
+class child3 extends parent{
+    void cal(double x) {
+     // Square
+    System.out.println("Cube - "+ x*x*x);
+    }
+}
+
+class Abstract {
+    public static void main(String[] args) {
+        child1 obj1 = new child1(); 
+        child2 obj2 = new child2(); 
+        child3 obj3 = new child3(); 
+        obj1.cal(3);
+        obj2.cal(4);
+        obj3.cal(5);
+    }
+}
+
+output:
+--
+Square - 9.0
+Root - 2.0
+Cube - 125.0
+
+
+
+
+
+
+
+
+
+
+Recursion.java
+
+code:
+--
+
+class demoWhile
+{
+	int factorial(int num)
+	{
+	int fact = 1;
+		while (num > 0)
+		{
+			fact = fact * num;
+			num = num - 1;
+		}
+	return fact;
+	}
+}
+// using java recursion
+class Recursion
+{
+	int factorial(int num)
+	{
+	int result;
+	if(num == 1) return 1;
+	result = factorial(num - 1)*num;
+	return result;
+	}
+	
+	public static void main(String[] args)
+	{
+		demoWhile obj = new demoWhile();
+		System.out.println("\nFactorial of 5 using while loop --------- " + obj.factorial(5));
+		
+    Recursion obj1 = new Recursion();
+    System.out.println("Factorial of 5 using recursion ---------- " + obj1.factorial(5) + "\n");
+}
+}
+
+output:
+--
+Factorial of 5 using while loop --------- 120
+Factorial of 5 using recursion ---------- 120
+
+
+
+
+
+
+
+
+
+Interface.java
+
+code:
+--
+
+interface father {
+double height = 6.2;
+void genHeight();
+}
+interface mother {
+double height = 5.6;
+void genHeight();
+}
+class child implements father, mother {
+double height = (father.height + mother.height) / 2;
+public void genHeight() {
+    System.out.println("Child's height is " + height);
+}
+}
+
+class Interface {
+    public static void main(String[] args) {
+        child obj = new child();
+        obj.genHeight();
+    }
+}
+
+output:
+--
+Child's height is 5.9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polymorphism.java
+
+code:
+--
+
+class sample
+{
+    void add(int a, int b, int c)
+    {
+        System.out.println("Sum is " + (a + b + c)); 
+    }
+    void add(int a, int b)
+    {
+        System.out.println("Sum is " + (a + b)); 
+    }
+}
+class PolyMorphism
+{
+    public static void main(String[] args)
+    {
+        sample s = new sample(); 
+        s.add(5, 10);
+        s.add(5, 10, 15);
+    }
+}
+
+output:
+--
+Sum is 15
+Sum is 30
