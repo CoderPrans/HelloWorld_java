@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
+import javax.swing.*;
 
 public class patients
 {
@@ -15,20 +16,24 @@ public class patients
         this.age = age;
         this.gen = gen;
     }
-
+    
     // main function
     public static void main(String[] args) throws IOException
     {
        Scanner sc = new Scanner(System.in);
        
        patients[] users = new patients[5];
+
+       JOptionPane.showMessageDialog(null,"Fill in the info :)",
+            "Patient's Info",JOptionPane.INFORMATION_MESSAGE);
        
        for(int i = 0; i < 5; i++){
-           System.out.println("Name Age Gender");  
-           String name = sc.next();
-           int age = sc.nextInt();
-           String gen = sc.next();
-           users[i] = new patients(name, age, gen);
+           String name = JOptionPane.showInputDialog(null, "Enter the name: ", "Name", JOptionPane.QUESTION_MESSAGE) ;
+           int age = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the age: ", "Age", JOptionPane.QUESTION_MESSAGE));
+           String[] gens= {"Male", "Female", "Others"};
+		   int gen_index=JOptionPane.showOptionDialog(null,"Choose your gender: ",
+				"Gender",0,JOptionPane.QUESTION_MESSAGE,null,gens,0);
+           users[i] = new patients(name, age, gens[gen_index]);
        }
 
        System.out.println("\n");
@@ -41,13 +46,22 @@ public class patients
        } 
       
        // Printing into a csv file, appending if already exists. 
-       PrintWriter out = new PrintWriter(new FileWriter("Patients_data.csv", true));
-       //out.println("Name,Age,Gender");
-
-       for (int i = 0; i < 5; i++) {
-           out.println(users[i].name + "," + users[i].age+ "," + users[i].gen);
+       String fileName = "Patients_data.csv";
+       File f = new File(fileName);
+       if(f.exists() && !f.isDirectory()) {
+       PrintWriter out = new PrintWriter(new FileWriter(fileName, true));
+           for (int i = 0; i < 5; i++) {
+               out.println(users[i].name + "," + users[i].age+ "," + users[i].gen);
+           }
+           out.close();
+       } else {
+       PrintWriter out = new PrintWriter(new FileWriter(fileName));
+           out.println("Name,Age,Gender");
+           for (int i = 0; i < 5; i++) {
+               out.println(users[i].name + "," + users[i].age+ "," + users[i].gen);
+           }
+           out.close();
        }
-       out.close();
-       System.out.println("Saved in Patients_data.csv file.");
+       System.out.println("Updated the Patients_data.csv file.");
     }
 }

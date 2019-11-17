@@ -2,6 +2,7 @@
 
 code:
 --
+
 import java.util.Scanner;
 
 public class Addition {
@@ -25,8 +26,90 @@ Enter the second number:
 The sum is 23 + 56 = 79
 
 
+Calculator.java
+
+code:
+–
+import java.util.Scanner;                                                                                                                         
+
+public class calculator {
+    public static void main(String[] args){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter two numbers");
+        // nextDouble reads the next double form the keyboard
+        double first = reader.nextDouble();
+        double second = reader.nextDouble();
+
+        System.out.print("Enter an operator (+, -, *, /)");
+
+        char operator = reader.next().charAt(0);
+        double result;
+        switch(operator) {
+            case '+':
+                result = first + second;
+                break;
+            case '-':
+                result = first - second;
+                break;
+            case '*':
+                result = first * second;
+                break;
+            case '/':
+                result = first / second;
+                break;
+            default:
+                System.out.println("Error! operator is not correct");
+            return;
+        }
+        System.out.printf("%.1f %c %.1f = %.1f", first, operator, second, result);
+
+    }
+}
 
 
+
+
+
+3.Array
+
+import  java.lang.System; import  java.lang.String; import  java.util.Scanner;
+
+
+public  class  array
+{
+public  static  void  main(String  args[])
+{
+
+
+Scanner  SC  =  new  Scanner(System.in);
+
+
+int[]  marks  =new  int[5]; String[]  name  =  new  String[5]; int  avg  =  0;
+System.out.println("enter  the  mark  of  5  student");
+for(int  i=0;  i<5;  i++)
+{
+
+
+marks[i]  =  SC.nextInt();
+avg  =  avg  +  marks[i];
+}
+avg  =avg/5;
+System.out.println("Average  of  the  marks  is  "  +avg);
+
+
+}
+} Output
+enter  the  mark  of  5  student
+
+50
+
+20
+
+10
+
+82
+
+15
 
 
 
