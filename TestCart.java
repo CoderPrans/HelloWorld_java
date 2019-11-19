@@ -76,6 +76,7 @@ class Cart{
 }
 
 class CartExtension extends Cart{
+    String output = "";
     /** Set of all possible options for PaymentStatus. */
     enum PaymentStatus{
         DONE, DUE, PARTIAL
@@ -114,7 +115,11 @@ class CartExtension extends Cart{
     }
     /** A method to handle the payment. */
     public void handlePayment(){
-        paymentMode=JOptionPane.showInputDialog("Enter Payment Mode(Cash/Cheque): ");
+        // paymentMode=JOptionPane.showInputDialog("Enter Payment Mode(Cash/Cheque): ");
+       String[] mode= {"Cash", "Cheque"};
+        int paymentModeIndex=JOptionPane.showOptionDialog(null,"Choose Payment Mode: ",
+            "Mode",0,JOptionPane.QUESTION_MESSAGE,null,mode,0);
+        paymentMode=mode[paymentModeIndex];
         paymentDate=new Date();//current date
         paymentAmount=new Float(JOptionPane.showInputDialog("Enter Amount, Total Due is: "+totalAmount));
         paymentDue=totalAmount-paymentAmount;
@@ -131,39 +136,43 @@ class CartExtension extends Cart{
         if(status==PaymentStatus.DONE || status==PaymentStatus.PARTIAL){
            System.out.println("SUCCESS: Your order is confirmed and will be processed soon.");
         }else if(status==PaymentStatus.DUE){
-            System.out.println("FAILED: Your order is failed. No payment done.");
+           System.out.println("FAILED: Your order is failed. No payment done.");
         }
     }
     /** The method Prints all the products from present Cart. */
     public void printCart(){
-        System.out.println("==================================");
-        System.out.println("CART ITEMS:");
-        System.out.println("==================================");
+        output = "";
+        output += "==================================\n";
+        output += "CART ITEMS:\n";
+        output += "==================================\n";
         for (Product p : getItems()) {
-            System.out.println("PRODUCT ID: "+p.getId());
-            System.out.println("PRODUCT NAME: "+p.getName());
-            System.out.println("PRODUCT PRICE: "+p.getPrice());
-            System.out.println("PRODUCT ORDER QTY: "+p.getOrderQuantity());
+            output += "PRODUCT ID: "+p.getId() + "\n";
+            output += "PRODUCT NAME: "+p.getName() + "\n";
+            output += "PRODUCT PRICE: "+p.getPrice() + "\n";
+            output += "PRODUCT ORDER QTY: "+p.getOrderQuantity() + "\n";
             Float total=p.getOrderQuantity()* p.getPrice();
-            System.out.println("TOTAL: "+total);
+            output += "TOTAL: "+total + "\n";
             totalAmount=totalAmount+total;
-            System.out.println();
+            output += "\n";
         }
-        System.out.println("==================================");
-        System.out.println("Net Total : "+totalAmount);
-        System.out.println("==================================");
+        output += "==================================" + "\n";
+        output += "Net Total : "+totalAmount + "\n";
+        output += "==================================  \n";
+        JOptionPane.showMessageDialog(null,output,"info", JOptionPane.INFORMATION_MESSAGE);
     }
     /** The method prints the payment summary. */
     void printPaymentSummary(){
-        System.out.println();
-        System.out.println("PAYMENT SUMMARY: ");
-        System.out.println("==================================");
-        System.out.println("TOTAL AMOUNT: "+totalAmount);
-        System.out.println("PAYMENT AMOUNT: "+paymentAmount);
-        System.out.println("PAYMENT DUE: "+paymentDue);
-        System.out.println("PAYMENT MODE: "+paymentMode);
-        System.out.println("PAYMENT DATE: "+paymentDate);
-        System.out.println("PAYMENT STATUS: "+status);
+        output = "";
+        output += "\n";
+        output += "PAYMENT SUMMARY: \n";
+        output += "================================== \n";
+        output += "TOTAL AMOUNT: "+totalAmount + "\n";
+        output += "PAYMENT AMOUNT: "+paymentAmount + "\n";
+        output += "PAYMENT DUE: "+paymentDue + "\n";
+        output += "PAYMENT MODE: "+paymentMode + "\n";
+        output += "PAYMENT DATE: "+paymentDate + "\n";
+        output += "PAYMENT STATUS: "+status + "\n";
+        JOptionPane.showMessageDialog(null,output,"info", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 
