@@ -8,13 +8,19 @@ public class patients
     String name;
     int age;
     String gen;
+    // float bmi;
+    String address;
+    // long contact;
 
     // constructor function
-    public patients(String name, int age, String gen)
+    public patients(String name, int age, String gen, String address)
     {
         this.name = name;
         this.age = age;
         this.gen = gen;
+        // this.bmi = bmi; 
+        this.address = address;
+        // this.contact = contact;
     }
     
     // main function
@@ -24,16 +30,18 @@ public class patients
        
        patients[] users = new patients[5];
 
-       JOptionPane.showMessageDialog(null,"Fill in the info :)",
+       JOptionPane.showMessageDialog(null,"Pateints Info",
             "Patient's Info",JOptionPane.INFORMATION_MESSAGE);
        
        for(int i = 0; i < 5; i++){
            String name = JOptionPane.showInputDialog(null, "Enter the name: ", "Name", JOptionPane.QUESTION_MESSAGE) ;
            int age = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the age: ", "Age", JOptionPane.QUESTION_MESSAGE));
            String[] gens= {"Male", "Female", "Others"};
+           // long contact = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the age: ", "Age", JOptionPane.QUESTION_MESSAGE));
 		   int gen_index=JOptionPane.showOptionDialog(null,"Choose your gender: ",
 				"Gender",0,JOptionPane.QUESTION_MESSAGE,null,gens,0);
-           users[i] = new patients(name, age, gens[gen_index]);
+           String address = JOptionPane.showInputDialog(null, "Enter the address: ", "Address", JOptionPane.QUESTION_MESSAGE) ;
+           users[i] = new patients(name, age, gens[gen_index], address);
        }
 
        System.out.println("\n");
