@@ -8,6 +8,7 @@ class Patient
     protected int age;
     protected String gen;
     protected float bmi;
+    protected float sugarL;
     protected String address;
     protected long contact;
 
@@ -17,6 +18,7 @@ class Patient
             int age, 
             String gen, 
             float bmi, 
+            float sugarL,
             String address, 
             long contact)
     {
@@ -24,6 +26,7 @@ class Patient
         this.age = age;
         this.gen = gen;
         this.bmi = bmi; 
+        this.sugarL = sugarL;
         this.address = address;
         this.contact = contact;
     }
@@ -75,6 +78,11 @@ class Registry
                  .showInputDialog(null, "Enter BMI: ",
                      "BMI", JOptionPane.QUESTION_MESSAGE));
 
+         // ask for sugar level
+        float sugarL = Float.parseFloat(JOptionPane
+                 .showInputDialog(null, "Enter Sugar Level: ",
+                     "Sugar Level", JOptionPane.QUESTION_MESSAGE));
+
          // ask for contact
         long contact = Long.parseLong(JOptionPane
                  .showInputDialog(null, "Enter Contact Info: ",
@@ -86,7 +94,7 @@ class Registry
                      "Address", JOptionPane.QUESTION_MESSAGE) ;
 
          // fill in the users array
-        users[i] = new Patient(name, age, gens[gen_index], bmi, address, contact);
+        users[i] = new Patient(name, age, gens[gen_index], bmi, sugarL, address, contact);
         }
 
       catch (NumberFormatException e) {
@@ -112,6 +120,7 @@ class Registry
                   +"Age: " +users[i].age+"\n"
                   +"Gender: " +users[i].gen+"\n"
                   +"BMI: " +users[i].bmi+"\n"
+                  +"Sugar Level: " +users[i].sugarL+"\n"
                   +"Address: " +users[i].address+"\n"
                   +"Contact: " +users[i].contact+"\n");
           salt.append("================================");
@@ -136,7 +145,7 @@ class Registry
         write(users, times, fileName);
      } else {
         PrintWriter out = new PrintWriter(new FileWriter(fileName));
-        out.println("Name,Age,Gender,Bmi,Address,Contact");
+        out.println("Name,Age,Gender,Bmi,Address,SugarLevel,Contact");
         out.close();
         write(users, times, fileName);
      }
@@ -152,6 +161,7 @@ class Registry
                  + users[i].age+ "," 
                  + users[i].gen+ "," 
                  + users[i].bmi + ","
+                 + users[i].sugarL + ","
                  + users[i].address + "," 
                  + users[i].contact);
      }
